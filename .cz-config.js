@@ -1,14 +1,14 @@
 const commitConf = require('./conventionalcommit.json')
 
 const types = []
-const scopes = Object.keys(commitConf.commonScopes).map((k) => ({ name: k }))
+const scopes = Object.keys(commitConf.commonScopes).map(k => ({ name: k }))
 const scopeOverrides = {}
 
 for (const type of Object.keys(commitConf.types)) {
   const itemType = commitConf.types[type]
   types.push({ value: type, name: itemType.description })
   if (itemType.scopes) {
-    scopeOverrides[type] = Object.keys(itemType.scopes).map((k) => ({
+    scopeOverrides[type] = Object.keys(itemType.scopes).map(k => ({
       name: k,
     }))
   }

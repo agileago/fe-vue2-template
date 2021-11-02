@@ -14,7 +14,7 @@ export function mount() {
 }
 export function unmount() {
   if (!app) return
-  app.$destroy()
+  app?.$destroy()
   app.$el.innerHTML = ''
   app = null
 }
