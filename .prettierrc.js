@@ -4,5 +4,5 @@ module.exports = {
   printWidth: 120,
   arrowParens: 'avoid',
   trailingComma: 'all',
-  vueIndentScriptAndStyle: true,
+  vueIndentScriptAndStyle: false,
 }
