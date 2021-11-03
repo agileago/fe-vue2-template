@@ -5,7 +5,7 @@ function resolve(dir) {
 }
 
 const CDN_HOST = 'https://cdn.titanmatrix.com'
-const OSS_DIR = '' // 例子： /matrial/starter 资源存放路径，一般以仓库路径为主
+const OSS_DIR = '请输入文件夹名称' // 例子： /matrial/starter 资源存放路径，一般以仓库路径为主
 
 let publicPath = ''
 switch (process.env.VUE_APP_MODE) {
@@ -14,7 +14,9 @@ switch (process.env.VUE_APP_MODE) {
     publicPath = CDN_HOST + OSS_DIR
     break
 }
-
+/**
+ * @type {import('@vue/cli-service').ProjectOptions}
+ */
 module.exports = {
   publicPath: publicPath + '/',
   productionSourceMap: false,
