@@ -1,6 +1,12 @@
 <template>
-  <div>
-    <h2>app</h2>
+  <service-provider>
     <router-view></router-view>
-  </div>
+  </service-provider>
 </template>
+<script lang="ts">
+import { ServiceProvider } from '@/service'
+
+export default {
+  components: { ServiceProvider },
+}
+</script>

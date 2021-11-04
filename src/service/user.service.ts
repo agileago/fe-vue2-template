@@ -1,18 +1,19 @@
-import { InjectionKey, provide, ref } from '@vue/composition-api'
+import { InjectionKey } from '@vue/composition-api'
+import { VueService } from '@/common/core/extend/vue-service'
+import { Ref } from '@/common/core/decorators/ref'
 
 export interface User {
   name: string
   age?: number
 }
-export class UserService {
+export class UserService extends VueService {
   static ProviderKey: InjectionKey<UserService> = Symbol()
-  user = ref<User | null>(null)
-  getUser = () => {
-    this.user.value = {
-      name: 'aaaa',
-    }
+  @Ref() user: User = {
+    name: 'aaaa',
   }
-  constructor() {
-    provide(UserService.ProviderKey, this)
+  getUser() {
+    this.user = {
+      name: 'cccc',
+    }
   }
 }

@@ -1,14 +1,17 @@
 import { defineComponent } from '@vue/composition-api'
 import { UserService } from '@/service/user.service'
+import { VueGlobalService } from '@/common/core/extend/vue-service'
 
-// export const class ServiceContainer {
-//
-// }
-//
-// export const ServiceProvider = defineComponent({
-//   name: 'ServiceProvider',
-//   setup(props, ctx) {
-//     userService = new UserService()
-//     return () => ctx.slots.default?.()
-//   },
-// })
+// 全局服务初始化容器，也可认为是全局store,通过此类可获得全局服务示例
+// const userService = ServiceContainer.getService(UserService)
+export class ServiceContainer extends VueGlobalService {
+  userService = new UserService()
+}
+
+export const ServiceProvider = defineComponent({
+  name: 'ServiceProvider',
+  setup(props, ctx) {
+    const serviceContainer = new ServiceContainer()
+    return () => <div>{ctx.slots.default?.(props)}</div>
+  },
+})

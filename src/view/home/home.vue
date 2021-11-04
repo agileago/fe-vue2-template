@@ -1,32 +1,48 @@
 <template>
   <div>
     <div>home view</div>
-    <span @click="add">+</span>
-    <span>{{ count }}</span>
-    <span @click="remove">--</span>
-    <svg-icon name=""></svg-icon>
+    <span @click="countService.add()">+</span>
+    <span>{{ countService.count }}</span>
+    <span @click="countService.remove()">--</span>
+    <svg-icon name="shezhi"></svg-icon>
+    <p ref="button">{{ userService.user.name }}</p>
+    <button @click="userService.getUser()">changeuser</button>
+    <input type="text" v-model.trim="countService.count" />
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
+import { defineComponent } from '@vue/composition-api'
+import { injectService, useProps } from '@/common/core/helper'
+import { UserService } from '@/service/user.service'
+import { VueService } from '@/common/core/extend/vue-service'
+import { Ref } from '@/common/core/decorators/ref'
+import { Link } from '@/common/core/decorators/link'
+import { Hook } from '@/common/core/decorators/hook'
 
-function useCount() {
-  const count = ref(1)
-  function add() {
-    count.value--
+class CountService extends VueService {
+  props = useProps()
+  @Ref() count = 0
+  @Link() button?: HTMLButtonElement
+  add() {
+    this.count++
   }
-  function remove() {
-    count.value++
+  remove() {
+    this.count--
   }
-  return { count, add, remove }
+  @Hook('Mounted')
+  mounted() {
+    console.log(this.button)
+  }
 }
 
 export default defineComponent({
   name: 'Home',
-  setup() {
+  setup(props, ctx) {
+    const userService = injectService(UserService)
     return {
-      ...useCount(),
+      userService,
+      countService: new CountService(),
     }
   },
 })
