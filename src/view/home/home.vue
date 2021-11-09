@@ -8,6 +8,7 @@
     <p ref="button">{{ userService.user.name }}</p>
     <button @click="userService.getUser()">changeuser</button>
     <input type="text" v-model.trim="countService.count" />
+    <home-child size="large"></home-child>
   </div>
 </template>
 
@@ -19,6 +20,7 @@ import { VueService } from '@/common/core/extend/vue-service'
 import { Ref } from '@/common/core/decorators/ref'
 import { Link } from '@/common/core/decorators/link'
 import { Hook } from '@/common/core/decorators/hook'
+import HomeChild from '@/view/home/home-child.vue'
 
 class CountService extends VueService {
   props = useProps()
@@ -38,6 +40,7 @@ class CountService extends VueService {
 
 export default defineComponent({
   name: 'Home',
+  components: { HomeChild },
   setup(props, ctx) {
     const userService = injectService(UserService)
     return {

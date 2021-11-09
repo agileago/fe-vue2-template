@@ -1,4 +1,4 @@
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, PropType } from '@vue/composition-api'
 import { UserService } from '@/service/user.service'
 import { VueGlobalService } from '@/common/core/extend/vue-service'
 
@@ -10,6 +10,9 @@ export class ServiceContainer extends VueGlobalService {
 
 export const ServiceProvider = defineComponent({
   name: 'ServiceProvider',
+  props: {
+    size: String as PropType<'small' | 'large'>,
+  },
   setup(props, ctx) {
     const serviceContainer = new ServiceContainer()
     return () => <div>{ctx.slots.default?.(props)}</div>
