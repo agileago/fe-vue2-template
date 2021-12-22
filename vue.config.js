@@ -4,11 +4,17 @@ function resolve(dir) {
   return path.join(__dirname, '.', dir)
 }
 
+// region 当前模式  处理环境变量
+const mode = (process.env.VUE_APP_MODE = process.VUE_CLI_SERVICE.mode)
+const command = mode === 'development' ? 'serve' : 'build'
+if (command === 'build') process.env.NODE_ENV = 'production'
+// endregion
+
 const CDN_HOST = 'https://cdn.titanmatrix.com'
 const OSS_DIR = '请输入文件夹名称' // 例子： /matrial/starter 资源存放路径，一般以仓库路径为主
 
 let publicPath = ''
-switch (process.env.VUE_APP_MODE) {
+switch (mode) {
   // 生产环境上传CDN
   case 'production':
     publicPath = CDN_HOST + OSS_DIR
