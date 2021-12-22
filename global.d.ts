@@ -1,3 +1,4 @@
+declare module 'path-to-regexp'
 declare module '*.vue' {
   import Vue from 'vue'
   export default Vue
