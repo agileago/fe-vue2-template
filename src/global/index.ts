@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import vueCompositionApi from '@vue/composition-api'

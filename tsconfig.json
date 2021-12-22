@@ -9,8 +9,6 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true,
-    "useDefineForClassFields": false,
     "sourceMap": true,
     "baseUrl": ".",
     "types": ["webpack-env"],

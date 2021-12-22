@@ -1,6 +1,5 @@
 <script lang="ts">
 import { defineComponent, PropType } from '@vue/composition-api'
-import { ComponentProps } from '@/common/core/type'
 
 const HomeChild = defineComponent({
   name: 'home-child',
@@ -12,9 +11,6 @@ const HomeChild = defineComponent({
     age: Number,
   },
 })
-
-export type HomeChild_Props = ComponentProps<typeof HomeChild>
-
 export default HomeChild
 </script>
 
