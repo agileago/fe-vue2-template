@@ -24,6 +24,7 @@ switch (mode) {
  * @type {import('@vue/cli-service').ProjectOptions}
  */
 module.exports = {
+  lintOnSave: false,
   publicPath: publicPath + '/',
   productionSourceMap: false,
   chainWebpack: config => {

@@ -2,7 +2,7 @@
 import { defineComponent, PropType } from '@vue/composition-api'
 
 const HomeChild = defineComponent({
-  name: 'home-child',
+  name: 'HomeChild',
   props: {
     size: {
       type: String as PropType<'small' | 'large'>,
@@ -15,7 +15,7 @@ export default HomeChild
 </script>
 
 <template>
-  <div></div>
+  <div>1111</div>
 </template>
 
 <style lang="scss" scoped></style>

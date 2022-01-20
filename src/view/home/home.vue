@@ -1,21 +1,26 @@
 <template>
   <div>
+    <van-button type="primary">按钮</van-button>
     <p @click="add()">{{ count }}</p>
     <home-child size="large"></home-child>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from '@vue/composition-api'
+import { defineComponent, ref } from '@vue/composition-api'
 import HomeChild from '@/view/home/home-child.vue'
 
 export default defineComponent({
   name: 'Home',
   components: { HomeChild },
-  data() {
+  setup() {
+    const count = ref(1)
     return {
-      count: 0,
+      count,
     }
+  },
+  data() {
+    return {}
   },
   methods: {
     add() {
