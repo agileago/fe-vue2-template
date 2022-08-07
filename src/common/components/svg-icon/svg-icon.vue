@@ -7,10 +7,9 @@
 </template>
 
 <script lang="ts">
-import { PropType } from '@vue/composition-api'
-import Vue from 'vue'
+import { defineComponent, type PropType } from 'vue'
 
-export default Vue.extend({
+export default defineComponent({
   name: 'SvgIcon',
   props: {
     name: {

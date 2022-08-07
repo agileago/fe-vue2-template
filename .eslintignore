@@ -1,8 +1,6 @@
 node_modules
 .idea
 dist
-coverage
 public
 *.d.ts
-scripts
 vue.config.js

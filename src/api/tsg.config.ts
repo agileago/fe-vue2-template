@@ -10,18 +10,22 @@ const projects: Project[] = [
   {
     name: 'strapi',
     dest: '../api',
-    source: 'http://test-pim-define.titanmatrix.cn/define/swagger-json',
+    source: 'https://abc.com/swagger.json',
     keepGeneric: false,
     shouldExportRequestOptionType: false,
     shouldExportResponseType: false,
-    importRequesterStatement: `import { lowcode, AxiosRequestConfig } from "../http"`,
+    importRequesterStatement: `import { lowcode, type AxiosRequestConfig } from "../http"`,
     prettierConfig: prettier,
     generateRequestFunction(arg) {
       let parameter = arg.parameterTypeName
-        ? `option${!arg.parameterRequired ? '?' : ''}: ${arg.parameterTypeName}, `
+        ? `option${!arg.parameterRequired ? '?' : ''}: ${
+            arg.parameterTypeName
+          }, `
         : ''
       parameter += 'config?: AxiosRequestConfig'
-      const body = `requester<${arg.responseSuccessTypeName}>('${arg.pathname}', { method: '${arg.httpMethod}' ${
+      const body = `requester<${arg.responseSuccessTypeName}>('${
+        arg.pathname
+      }', { method: '${arg.httpMethod}' ${
         arg.parameterTypeName ? ', ...option' : ''
       }}, config)`
       return `(${parameter}) => ${body}`

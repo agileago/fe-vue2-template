@@ -1,14 +1,13 @@
 <template>
   <div>
-    <van-button type="primary">按钮</van-button>
     <p @click="add()">{{ count }}</p>
     <home-child size="large"></home-child>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from '@vue/composition-api'
-import HomeChild from '@/view/home/home-child.vue'
+import HomeChild from './home-child.vue'
+import { defineComponent, ref } from 'vue'
 
 export default defineComponent({
   name: 'Home',

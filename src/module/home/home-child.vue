@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType } from '@vue/composition-api'
+import { defineComponent, type PropType } from 'vue'
 
 const HomeChild = defineComponent({
   name: 'HomeChild',
