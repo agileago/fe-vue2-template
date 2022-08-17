@@ -44,7 +44,6 @@ module.exports = defineConfig({
   devServer: {
     host: '0.0.0.0',
     headers: { 'Access-Control-Allow-Origin': '*' },
-    historyApiFallback: true,
     proxy: {
       // '/api': {
       //   target: 'http://test-tmc2.titanmatrix.cn',
