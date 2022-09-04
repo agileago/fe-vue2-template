@@ -7,12 +7,12 @@ function resolve(dir) {
 // region 当前模式  处理环境变量
 const mode = (process.env.VUE_APP_MODE = process.VUE_CLI_SERVICE.mode)
 const command = mode === 'development' ? 'serve' : 'build'
-if (command === 'build') process.env.NODE_ENV = 'production'
+if (command === 'build') process.env.BABEL_ENV = process.env.NODE_ENV = 'production'
 // endregion
 
 module.exports = defineConfig({
   lintOnSave: false,
-  publicPath: process.env.BASE_URL,
+  publicPath: process.env.VUE_APP_BASE_URL,
   productionSourceMap: false,
   chainWebpack: config => {
     config.plugin('html').tap(args => {
@@ -32,6 +32,24 @@ module.exports = defineConfig({
         symbolId: 'icon-[name]',
       })
   },
+  configureWebpack: config => {
+    // 上传阿里OSS cdn
+    if (command === 'build' && /^http/.test(process.env.VUE_APP_BASE_URL)) {
+      // 根据路径获取Oss目录
+      const OSS_DIR = new URL(process.env.VUE_APP_BASE_URL).pathname.replace(/\/$/, '')
+      config.plugins.unshift(
+        new WebpackAliyunOss({
+          from: ['./dist/**', '!./dist/**/*.html'],
+          dist: OSS_DIR,
+          region: process.env.OSS_REGION,
+          accessKeyId: process.env.OSS_KEY,
+          accessKeySecret: process.env.OSS_SECRET,
+          bucket: process.env.OSS_BUCKET,
+          verbose: true,
+        }),
+      )
+    }
+  },
   css: {
     loaderOptions: {
       less: {
@@ -39,6 +57,13 @@ module.exports = defineConfig({
           javascriptEnabled: true,
         },
       },
+      css: {
+        modules: {
+          localIdentName: '[local]--[hash:base64:5]',
+          exportLocalsConvention: 'camelCaseOnly',
+          auto: true,
+        }
+      }
     },
   },
   devServer: {

@@ -1,3 +1,3 @@
-import type { ConfigTypeOptional } from '@/config/config.default'
+import Config from '@/config/config.default'
 
-export default {} as ConfigTypeOptional
+export default class extends Config {}

@@ -1,15 +1,13 @@
-import defaultConf, { type ConfigTypeOptional } from './config.default'
-import deepMerge from 'ts-deepmerge'
+import Config from '@/config/config.default'
 
-let targetConf: ConfigTypeOptional = {}
-
+let TargetConf = Config
 // 自动扫描配置文件
 const requireContext = require.context('./', false, /config\.(\w+)\.ts$/)
 requireContext.keys().forEach(path => {
   if (path !== `./config.${process.env.VUE_APP_MODE}.ts`) return
-  targetConf = requireContext(path).default
+  TargetConf = requireContext(path).default
 })
 
-const config = deepMerge(defaultConf, targetConf)
-config.env = process.env.VUE_APP_MODE
+const config = new TargetConf()
+
 export default config

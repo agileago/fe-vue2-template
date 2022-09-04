@@ -12,13 +12,13 @@
     "type:check": "tsc --noEmit",
     "lint": "vue-cli-service lint",
     "api": "tsg -c ./src/api/tsg.config.ts",
-    "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/"
+    "chrome": "open -n /Applications/Google\\ Chrome.app/ --args --disable-web-security  --user-data-dir=$HOME/MyChromeDevUserData/",
+    "postinstall": "simple-git-hooks"
   },
   "dependencies": {
     "axios": "^0.27.2",
     "core-js": "^3.24.1",
     "path-to-regexp": "^6.2.1",
-    "ts-deepmerge": "^2.0.4",
     "ts-essentials": "^9.2.0",
     "vue": "^2.7.8",
     "vue-router": "^3.5.3"
@@ -27,7 +27,6 @@
     "@babel/core": "^7.18.10",
     "@commitlint/cli": "^17.0.3",
     "@commitlint/config-conventional": "^17.0.3",
-    "@nexhome/yorkie": "^2.0.8",
     "@types/path-to-regexp": "^1.7.0",
     "@types/prettier": "^2.7.0",
     "@types/swagger-schema-official": "^2.0.22",
@@ -41,7 +40,6 @@
     "@vue/cli-plugin-typescript": "~5.0.8",
     "@vue/cli-service": "~5.0.8",
     "@vue/eslint-config-typescript": "^9.1.0",
-    "autoprefixer": "^10.4.8",
     "babel-loader": "^8.2.5",
     "babel-plugin-import": "^1.13.5",
     "eslint": "^8.21.0",
@@ -52,10 +50,12 @@
     "less-loader": "^11.0.0",
     "lint-staged": "^13.0.3",
     "postcss": "^8.4.16",
+    "postcss-preset-env": "^7.8.0",
     "prettier": "^2.7.1",
     "sass": "^1.54.4",
     "sass-loader": "^13.0.2",
     "serve": "^14.0.1",
+    "simple-git-hooks": "^2.8.0",
     "svg-sprite-loader": "^6.0.11",
     "tailwindcss": "^3.1.8",
     "ts-gear": "^4.9.0",
@@ -65,9 +65,9 @@
     "vue-template-compiler": "^2.7.8",
     "webpack": "^5.74.0"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged",
-    "commit-msg": "commitlint -E GIT_PARAMS"
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged",
+    "commit-msg": "pnpm exec commitlint -e \"$@\""
   },
   "commitlint": {
     "extends": [
