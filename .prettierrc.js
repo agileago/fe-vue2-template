@@ -4,4 +4,5 @@ module.exports = {
   arrowParens: 'avoid',
   trailingComma: 'all',
   vueIndentScriptAndStyle: false,
+  plugins: [require('prettier-plugin-tailwindcss')],
 }

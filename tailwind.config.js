@@ -1,9 +1,9 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.*'],
+  content: ['./src/**/*.{vue,tsx}'],
   theme: {
     extend: {},
   },
   plugins: [],
-  prefix: 'tw-',
+  presets: [require('tailwindcss-rem2px-preset')],
 }

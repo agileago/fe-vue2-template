@@ -4,7 +4,7 @@ import './theme/app.scss'
 export const App = defineComponent({
   setup() {
     return () => (
-      <div class={'tw-bg-amber-200 tw-flex'}>
+      <div class={'flex text-amber-300'}>
         <router-view />
       </div>
     )
